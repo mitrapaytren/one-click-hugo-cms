@@ -15,6 +15,37 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Intro Blurb", name: "description", widget: "text"}
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
+    - name: "settings"
+    label: "Settings"
+    delete: false # Prevent users from deleting documents in this collection
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Site Settings"
+        file: "_data/settings.json"
+        description: "General Site Settings"
+        fields:
+          - {label: "Global title", name: "site_title", widget: "string"}
+          - label: "Post Settings"
+            name: posts
+            widget: "object"
+            fields:
+              - {label: "Number of posts on frontpage", name: front_limit, widget: number}
+              - {label: "Default Author", name: author, widget: string}
+              - {label: "Default Thumbnail", name: thumb, widget: image, class: "thumb"}
+
+      - name: "authors"
+        label: "Authors"
+        file: "_data/authors.yml"
+        description: "Author descriptions"
+        fields:
+          - name: authors
+            label: Authors
+            widget: list
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "markdown"}
   - name: "pages"
     label: "Pages"
     files:
